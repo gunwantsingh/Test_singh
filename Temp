@@ -1,3 +1,5 @@
+Authorization Flaw:
+------------------
 package controller.web.account;
  
 public class AccountDetailsController extends HttpServlet {
@@ -28,3 +30,32 @@ public class AccountDetailsController extends HttpServlet {
    	 view.forward(req,resp);
     }
 }
+
+Server Side Template Injection:
+------------------------------
+//Thymeleaf templating engine: https://github.com/veracode-research/spring-view-manipulation
+
+//HelloController.java
+
+@Controller
+public class HelloController {
+
+    @GetMapping("/")
+    public String index(Model model) {
+        model.addAttribute("message", "happy birthday");
+        return "welcome";
+    }
+}
+
+
+// welcome.html
+
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div th:fragment="header">
+    <h3>Spring Boot Web Thymeleaf Example</h3>
+</div>
+<div th:fragment="main">
+    <span th:text="'Hello, ' + ${message}"></span>
+</div>
+</html>
