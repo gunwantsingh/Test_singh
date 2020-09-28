@@ -59,3 +59,22 @@ public class HelloController {
     <span th:text="'Hello, ' + ${message}"></span>
 </div>
 </html>
+
+----
+
+Checkmarx enables organisations to fully automate SAST (Static Application Security Testing) processs. Developers are under immense pressure to deliver software rapidly so if SAST tools that disrupt development workflows are unlikely to be adopted. The development teams can benefit from SAST if it causes minimal delays and effectively identify vulnerabilities. The process needs to be tailored based on the application security strategy, existing development processes, toolchains, timelines, and personal preferences.The Checkmarx process aims to fully automate the functions from scanning to ticketing.
+
+1. Checkmarx Workflow / Process 
+    1. The Checkmarx integration with Gitlab already enables code scans for critical projects in GS. Eventually the scans will be configured as Full or Incremental based on the state of the project, whether it is a first-time scan or a code-change.
+    2. The scans will be picked by the Security Analysts to perform validation so as to mark the findings - Confirmed, To Verify, Urgent, or Not Exploitable.
+    3. The Confirmed Findings will be sent to an Integrated Tracker tool (Eg. JIRA, Threadfix) where they will be triaged and tracked until remediation.
+    4. The process will gradually delegate the code-review responsibilities to the ASC (Application Security Champions) and the developers for their own code. This includes training and guidelines to the stakeholders.
+2. Improving Security Analysis 
+    1. The Secure SDLC Team and Development Teams, both will share responsibilities to add or fine-tune existing rules in Checkmarx. The S-SDLC will work on identifying common patterns for the software projects and the development teams will work on patterns specific for their projects.
+    2. The S-SDLC team will also fine tune scan settings and preset configuration for better results.
+3. Management and Orchestration: This feature of Checkmarx provide a holistic view of security risks across their application portfolio. It provides a centralized management console to define unified AppSec policies for custom/proprietary code and open source components, track key trends and KPIs, and drive decisions across the organization based on actionable data. Below categories are the three main capabilities of this feature:
+    1. Analytics: This provides the ability to track the security status of their applications across the organization, analyze the data provided to help make better business decisions
+    2. Policy Management: It provides a centralized management console to define unified AppSec policies and also define rules that serve to implement compliance, and violations. 
+    3. Remediation Intelligence: focuses on remediation optimisation where it suggests “Best Fix” spots where single corrections can eliminate multiple vulnerabilities. Therefore, it is very helpful in prioritising remediation efforts that saves time and efforts. 
+4. Develop code-review checklist and improve it from the learnings of scan analysis. The learnings will provide input for the security awareness training to the development team. 
+
