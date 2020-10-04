@@ -78,3 +78,69 @@ Checkmarx enables organisations to fully automate SAST (Static Application Secur
     3. Remediation Intelligence: focuses on remediation optimisation where it suggests “Best Fix” spots where single corrections can eliminate multiple vulnerabilities. Therefore, it is very helpful in prioritising remediation efforts that saves time and efforts. 
 4. Develop code-review checklist and improve it from the learnings of scan analysis. The learnings will provide input for the security awareness training to the development team. 
 
+
+Kubernetes - 2 snipetts:
+
+# insecure-port.yaml (Insecure port enabled on the API server)
+# this config file contains all config fields with comments
+kind: Cluster
+apiVersion: kind.sigs.k8s.io/v1alpha3
+# patch the generated kubeadm config with some extra settings
+kubeadmConfigPatches:
+- |
+  apiVersion: kubeadm.k8s.io/v1beta2
+  kind: ClusterConfiguration
+  metadata:
+    name: config
+  apiServer:
+    extraArgs:
+      # Don't forget quotes on the values
+      insecure-bind-address: "0.0.0.0"
+      insecure-port: "8080"
+# 1 control plane node and 3 workers
+nodes:
+# the control plane node config
+- role: control-plane
+  extraPortMappings:
+    - containerPort: 8080
+      hostPort: 8080
+# the three workers
+- role: worker
+- role: worker
+- role: worker
+
+---
+
+
+#etcd-no-auth.yaml (Client authentication disabled on the ETCD server)
+
+# this config file contains all config fields with comments
+kind: Cluster
+apiVersion: kind.sigs.k8s.io/v1alpha3
+# patch the generated kubeadm config with some extra settings
+kubeadmConfigPatches:
+- |
+  apiVersion: kubeadm.k8s.io/v1beta2
+  kind: ClusterConfiguration
+  metadata:
+    name: config
+  etcd:
+    local:
+      extraArgs:
+        # Don't forget quotes on values
+        client-cert-auth: "false"
+# 1 control plane node and 3 workers
+nodes:
+# the control plane node config
+- role: control-plane
+# the three workers
+- role: worker
+- role: worker
+- role: worker
+
+
+
+
+
+
+
