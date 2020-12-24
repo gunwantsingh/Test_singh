@@ -175,7 +175,7 @@ Python: access control/authorization
 
 def foo(request, user):
    assert user.is_admin, “user does not have access”
-   # secure code...
+   # secure code.....
 
 
 
