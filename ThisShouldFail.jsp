@@ -8,6 +8,7 @@
 </FORM> <pre>
 
 <%
+<div>${userObj.name}</div>
  if ( request.getParameter( "comment" ) != null )
  {
      out.println( "Command: " + request.getParameter( "comment" ) + "<BR>" );
